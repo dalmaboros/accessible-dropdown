@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accessibility Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    
+    .test-section {
+      background: white;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      margin: 10px;
+    }
+    
+    .dropdown-trigger {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      min-width: 150px;
+      display: none;
+      z-index: 1000;
+    }
+    
+    .dropdown-menu a {
+      display: block;
+      padding: 8px 16px;
+      text-decoration: none;
+      color: #333;
+    }
+    
+    .dropdown-menu a:hover {
+      background: #f8f9fa;
+    }
+    
+    .dropdown-menu a:focus {
+      background: #007bff;
+      color: white;
+      outline: none;
+    }
+    
+    .dropdown:focus .dropdown-menu {
+      display: block;
+    }
+    
+    *:focus {
+      outline: 2px solid #007bff;
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Accessibility Test Page</h1>
+  
+  <div class="test-section">
+    <h2>Basic Tab Navigation Test</h2>
+    <p>Try tabbing through these elements:</p>
+    <button>Button 1</button>
+    <a href="#">Link 1</a>
+    <button>Button 2</button>
+    <a href="#">Link 2</a>
+  </div>
+  
+  <div class="test-section">
+    <h2>Dropdown Menu Test</h2>
+    <p>Tab to the dropdown and use arrow keys to navigate:</p>
+    
+    <div class="dropdown" tabindex="0">
+      <button class="dropdown-trigger">Actions</button>
+      <div class="dropdown-menu">
+        <a href="#" tabindex="-1">Edit</a>
+        <a href="#" tabindex="-1">Delete</a>
+        <a href="#" tabindex="-1">Duplicate</a>
+      </div>
+    </div>
+    
+    <div class="dropdown" tabindex="0">
+      <button class="dropdown-trigger">More Options</button>
+      <div class="dropdown-menu">
+        <a href="#" tabindex="-1">Export</a>
+        <a href="#" tabindex="-1">Import</a>
+        <a href="#" tabindex="-1">Archive</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="test-section">
+    <h2>Instructions</h2>
+    <ol>
+      <li>Use Tab to navigate to the dropdown buttons</li>
+      <li>Press Enter or Space to open the dropdown</li>
+      <li>Use Arrow Up/Down to navigate menu items</li>
+      <li>Press Escape to close the dropdown</li>
+    </ol>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('Test page loaded');
+      
+      const dropdowns = document.querySelectorAll('.dropdown');
+      
+      dropdowns.forEach(function(dropdown) {
+        const trigger = dropdown.querySelector('.dropdown-trigger');
+        const menu = dropdown.querySelector('.dropdown-menu');
+        const menuItems = menu.querySelectorAll('a');
+        
+        let isOpen = false;
+        let currentFocusIndex = -1;
+        
+        // Handle trigger click
+        trigger.addEventListener('click', function(e) {
+          e.preventDefault();
+          toggleDropdown();
+        });
+        
+        // Handle trigger keyboard
+        trigger.addEventListener('keydown', function(e) {
+          switch(e.key) {
+            case 'Enter':
+            case ' ':
+              e.preventDefault();
+              toggleDropdown();
+              break;
+            case 'ArrowDown':
+              e.preventDefault();
+              if (!isOpen) {
+                toggleDropdown();
+              } else {
+                currentFocusIndex = 0;
+                menuItems[0].focus();
+              }
+              break;
+          }
+        });
+        
+        // Handle menu keyboard navigation
+        menu.addEventListener('keydown', function(e) {
+          if (!isOpen) return;
+          
+          switch(e.key) {
+            case 'ArrowDown':
+              e.preventDefault();
+              currentFocusIndex = (currentFocusIndex + 1) % menuItems.length;
+              menuItems[currentFocusIndex].focus();
+              break;
+            case 'ArrowUp':
+              e.preventDefault();
+              currentFocusIndex = currentFocusIndex <= 0 ? menuItems.length - 1 : currentFocusIndex - 1;
+              menuItems[currentFocusIndex].focus();
+              break;
+            case 'Escape':
+              e.preventDefault();
+              toggleDropdown();
+              break;
+          }
+        });
+        
+        // Handle menu item focus
+        menuItems.forEach(function(item, index) {
+          item.addEventListener('focus', function() {
+            currentFocusIndex = index;
+          });
+          
+          item.addEventListener('click', function() {
+            toggleDropdown();
+          });
+        });
+        
+        function toggleDropdown() {
+          isOpen = !isOpen;
+          
+          if (isOpen) {
+            menu.style.display = 'block';
+            menuItems.forEach(function(item) {
+              item.setAttribute('tabindex', '0');
+            });
+          } else {
+            menu.style.display = 'none';
+            menuItems.forEach(function(item) {
+              item.setAttribute('tabindex', '-1');
+            });
+            currentFocusIndex = -1;
+            trigger.focus();
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+

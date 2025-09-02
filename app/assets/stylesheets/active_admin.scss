@@ -1,0 +1,291 @@
+// Sass variable overrides must be declared before loading up Active Admin's styles.
+//
+// To view the variables that Active Admin provides, take a look at
+// `app/assets/stylesheets/active_admin/mixins/_variables.scss` in the
+// Active Admin source.
+//
+// For example, to change the sidebar width:
+// $sidebar-width: 242px;
+
+// Active Admin's got SASS!
+@import "active_admin/mixins";
+@import "active_admin/base";
+
+// Overriding any non-variable Sass must be done after the fact.
+// For example, to change the default status-tag color:
+//
+//   .status_tag { background: #6090DB; }
+
+// ActiveAdmin Dropdown Accessibility CSS Patch
+// Ensures proper focus indicators and accessibility styling for ActiveAdmin dropdowns
+
+/* Focus indicators for ActiveAdmin dropdown triggers */
+.dropdown_button:focus,
+.dropdown-button:focus,
+.dropdown-toggle:focus,
+.dropdown button:focus,
+.dropdown a:focus {
+  outline: 2px solid #007bff !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25) !important;
+}
+
+/* Focus indicators for dropdown menu items */
+.dropdown_menu a:focus,
+.dropdown-menu a:focus,
+.dropdown_menu button:focus,
+.dropdown-menu button:focus,
+.dropdown_menu [role="menuitem"]:focus,
+.dropdown-menu [role="menuitem"]:focus {
+  outline: 2px solid #007bff !important;
+  outline-offset: -2px !important;
+  background-color: #f8f9fa !important;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25) !important;
+}
+
+/* Ensure menu items are properly styled when focused */
+.dropdown_menu a,
+.dropdown-menu a,
+.dropdown_menu button,
+.dropdown-menu button,
+.dropdown_menu [role="menuitem"],
+.dropdown-menu [role="menuitem"] {
+  display: block !important;
+  width: 100% !important;
+  padding: 0.5rem 1rem !important;
+  text-decoration: none !important;
+  color: inherit !important;
+  background: none !important;
+  border: none !important;
+  text-align: left !important;
+  cursor: pointer !important;
+  transition: background-color 0.2s ease !important;
+}
+
+/* Hover states for menu items */
+.dropdown_menu a:hover,
+.dropdown-menu a:hover,
+.dropdown_menu button:hover,
+.dropdown-menu button:hover,
+.dropdown_menu [role="menuitem"]:hover,
+.dropdown-menu [role="menuitem"]:hover {
+  background-color: #f8f9fa !important;
+}
+
+/* Ensure dropdown menus are properly positioned and visible */
+.dropdown_menu,
+.dropdown-menu {
+  position: absolute !important;
+  z-index: 1000 !important;
+  background: white !important;
+  border: 1px solid #ddd !important;
+  border-radius: 4px !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  min-width: 200px !important;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .dropdown_button:focus,
+  .dropdown-button:focus,
+  .dropdown-toggle:focus,
+  .dropdown button:focus,
+  .dropdown a:focus {
+    outline: 2px solid #000 !important;
+    outline-offset: 2px !important;
+  }
+  
+  .dropdown_menu a:focus,
+  .dropdown-menu a:focus,
+  .dropdown_menu button:focus,
+  .dropdown-menu button:focus,
+  .dropdown_menu [role="menuitem"]:focus,
+  .dropdown-menu [role="menuitem"]:focus {
+    outline: 2px solid #000 !important;
+    outline-offset: -2px !important;
+    background-color: #000 !important;
+    color: #fff !important;
+  }
+  
+  .dropdown_menu,
+  .dropdown-menu {
+    border: 2px solid #000 !important;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .dropdown_menu a,
+  .dropdown-menu a,
+  .dropdown_menu button,
+  .dropdown-menu button,
+  .dropdown_menu [role="menuitem"],
+  .dropdown-menu [role="menuitem"] {
+    transition: none !important;
+  }
+}
+
+/* Ensure proper color contrast */
+.dropdown_menu a,
+.dropdown-menu a,
+.dropdown_menu button,
+.dropdown-menu button,
+.dropdown_menu [role="menuitem"],
+.dropdown-menu [role="menuitem"] {
+  color: #333 !important;
+}
+
+.dropdown_menu a:hover,
+.dropdown-menu a:hover,
+.dropdown_menu button:hover,
+.dropdown-menu button:hover,
+.dropdown_menu [role="menuitem"]:hover,
+.dropdown-menu [role="menuitem"]:hover {
+  color: #000 !important;
+}
+
+/* Screen reader only text */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Ensure dropdowns don't interfere with other elements */
+.dropdown {
+  position: relative !important;
+}
+
+/* Fix for ActiveAdmin's specific dropdown structure */
+.header .tabs .dropdown,
+.header .meta .dropdown {
+  position: relative !important;
+}
+
+.header .tabs .dropdown_menu,
+.header .meta .dropdown_menu,
+.header .tabs .dropdown-menu,
+.header .meta .dropdown-menu {
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  right: auto !important;
+  min-width: 200px !important;
+}
+
+/* Ensure proper spacing and typography */
+.dropdown_menu,
+.dropdown-menu {
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+  margin: 0 !important;
+  padding: 0.5rem 0 !important;
+  list-style: none !important;
+}
+
+/* Remove any conflicting styles from ActiveAdmin */
+.dropdown_menu *,
+.dropdown-menu * {
+  box-sizing: border-box !important;
+}
+
+/* Safari-specific accessibility fixes */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  /* Safari-specific focus styles */
+  a:focus,
+  button:focus,
+  input:focus,
+  select:focus,
+  textarea:focus,
+  [tabindex]:focus {
+    outline: 2px solid #007bff !important;
+    outline-offset: 2px !important;
+    -webkit-appearance: none !important;
+  }
+  
+  /* Ensure dropdown menus are properly focusable in Safari */
+  .dropdown_menu a,
+  .dropdown-menu a,
+  .dropdown_menu button,
+  .dropdown-menu button {
+    -webkit-user-select: none !important;
+    -webkit-tap-highlight-color: rgba(0, 123, 255, 0.3) !important;
+  }
+  
+  /* Fix Safari's tab navigation issues */
+  *:focus {
+    outline: 2px solid #007bff !important;
+    outline-offset: 2px !important;
+  }
+}
+
+/* Ensure all interactive elements are focusable */
+a, button, input, select, textarea, [tabindex] {
+  cursor: pointer !important;
+}
+
+/* Force focus visibility in all browsers */
+*:focus-visible {
+  outline: 2px solid #007bff !important;
+  outline-offset: 2px !important;
+}
+
+/* ActiveAdmin sidebar dropdown accessibility */
+#sidebar .dropdown {
+  position: relative !important;
+}
+
+#sidebar .dropdown:focus {
+  outline: 2px solid #007bff !important;
+  outline-offset: 2px !important;
+}
+
+#sidebar .dropdown:focus .dropdown_menu,
+#sidebar .dropdown:focus .dropdown-menu {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  background: white !important;
+  border: 1px solid #ddd !important;
+  border-radius: 4px !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  z-index: 1000 !important;
+  min-width: 200px !important;
+}
+
+#sidebar .dropdown_menu a,
+#sidebar .dropdown-menu a {
+  display: block !important;
+  padding: 8px 16px !important;
+  text-decoration: none !important;
+  color: #333 !important;
+  border: none !important;
+  background: none !important;
+  width: 100% !important;
+  text-align: left !important;
+  cursor: pointer !important;
+}
+
+#sidebar .dropdown_menu a:focus,
+#sidebar .dropdown-menu a:focus {
+  background: #f8f9fa !important;
+  outline: 2px solid #007bff !important;
+  outline-offset: -2px !important;
+}
+
+/* Ensure dropdown menus are visible when parent is focused */
+#sidebar .dropdown:focus-within .dropdown_menu,
+#sidebar .dropdown:focus-within .dropdown-menu {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}

@@ -1,0 +1,146 @@
+<header class="header">
+  <div class="header-content">
+    <a href="#" class="logo">ActiveAdmin Demo</a>
+    
+    <!-- Simulate ActiveAdmin's header dropdown structure -->
+    <div class="header_meta">
+      <div class="dropdown">
+        <a href="#" class="dropdown_button">
+          Admin User
+          <span class="dropdown_arrow"></span>
+        </a>
+        <ul class="dropdown_menu">
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">Settings</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="demo-content">
+  <h1>ActiveAdmin Dropdown Accessibility Test</h1>
+  
+  <p>This page simulates ActiveAdmin's dropdown structure to test the accessibility patch. The dropdowns below should be fully keyboard accessible.</p>
+  
+  <h2>Test Dropdowns</h2>
+  
+  <!-- Standard ActiveAdmin dropdown -->
+  <div class="dropdown">
+    <button class="dropdown_button">
+      Actions
+      <span class="dropdown_arrow"></span>
+    </button>
+    <ul class="dropdown_menu">
+      <li><a href="#">Edit</a></li>
+      <li><a href="#">Delete</a></li>
+      <li><a href="#">Duplicate</a></li>
+    </ul>
+  </div>
+  
+  <!-- Another dropdown with different structure -->
+  <div class="dropdown">
+    <a href="#" class="dropdown_button">
+      More Options
+      <span class="dropdown_arrow"></span>
+    </a>
+    <div class="dropdown_menu">
+      <a href="#">Export</a>
+      <a href="#">Import</a>
+      <a href="#">Archive</a>
+    </div>
+  </div>
+  
+  <h2>Testing Instructions</h2>
+  
+  <ol>
+    <li><strong>Tab Navigation:</strong> Use Tab to navigate to dropdown triggers</li>
+    <li><strong>Open Dropdown:</strong> Press Enter or Space on a trigger</li>
+    <li><strong>Navigate Menu:</strong> Use Arrow Up/Down to move through items</li>
+    <li><strong>Quick Navigation:</strong> Use Home/End to jump to first/last item</li>
+    <li><strong>Close Dropdown:</strong> Press Escape or Tab</li>
+  </ol>
+  
+  <h2>Expected Behavior</h2>
+  
+  <ul>
+    <li>Dropdown triggers should be focusable with Tab</li>
+    <li>Menu items should be focusable when dropdown is open</li>
+    <li>Arrow keys should navigate through menu items</li>
+    <li>Focus should return to trigger when closing dropdown</li>
+    <li>Screen readers should announce menu state and items</li>
+  </ul>
+  
+  <div style="margin-top: 2rem; padding: 1rem; background: #f8f9fa; border-radius: 4px;">
+    <h3>Additional Test Elements</h3>
+    <p>These elements are here to test tab navigation flow:</p>
+    <button>Test Button 1</button>
+    <button>Test Button 2</button>
+    <a href="#">Test Link</a>
+  </div>
+</div>
+
+<style>
+/* Simulate ActiveAdmin's basic styling */
+.header_meta {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.dropdown_button {
+  background: #007bff;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dropdown_arrow {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid currentColor;
+}
+
+.dropdown_menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  min-width: 150px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+
+.dropdown_menu li {
+  margin: 0;
+}
+
+.dropdown_menu a {
+  display: block;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #333;
+}
+
+.dropdown_menu a:hover {
+  background: #f8f9fa;
+}
+</style>
+

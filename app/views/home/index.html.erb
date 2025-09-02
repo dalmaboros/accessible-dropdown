@@ -1,0 +1,88 @@
+<header class="header">
+  <div class="header-content">
+    <a href="#" class="logo">Accessible Dropdown Demo</a>
+    
+    <!-- Accessible Dropdown Menu -->
+    <div class="dropdown" data-dropdown>
+      <button class="dropdown-trigger" data-dropdown-trigger>
+        <span>Admin Menu</span>
+        <span class="dropdown-arrow" aria-hidden="true"></span>
+        <span class="sr-only">Toggle admin menu</span>
+      </button>
+      
+      <div class="dropdown-menu" data-dropdown-menu>
+        <a href="#" role="menuitem">Dashboard</a>
+        <a href="#" role="menuitem">Users</a>
+        <a href="#" role="menuitem">Settings</a>
+        <div class="dropdown-separator"></div>
+        <a href="#" role="menuitem">Profile</a>
+        <a href="#" role="menuitem">Logout</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="demo-content">
+  <h1>ActiveAdmin Dropdown Accessibility Patch</h1>
+  
+  <p>This demo shows two different approaches to accessible dropdown menus:</p>
+  
+  <div style="margin: 2rem 0; padding: 1rem; background: #e3f2fd; border-radius: 4px;">
+    <h2>Test Pages</h2>
+    <ul>
+      <li><strong><a href="/">Home Page</a></strong> - Custom accessible dropdown implementation</li>
+      <li><strong><a href="/home/activeadmin_test">ActiveAdmin Test</a></strong> - Simulates ActiveAdmin's dropdown structure with the accessibility patch</li>
+    </ul>
+  </div>
+  
+  <h2>ActiveAdmin Patch Files</h2>
+  
+  <p>The following files are ready to be applied to your ActiveAdmin application:</p>
+  
+  <ul>
+    <li><strong>JavaScript Patch:</strong> <code>app/assets/javascripts/activeadmin-dropdown-patch.js</code></li>
+    <li><strong>CSS Patch:</strong> <code>app/assets/stylesheets/activeadmin-dropdown-patch.css</code></li>
+  </ul>
+  
+  <h2>Installation Instructions</h2>
+  
+  <p>To apply this patch to your ActiveAdmin application:</p>
+  
+  <ol>
+    <li>Copy the JavaScript patch to your ActiveAdmin's <code>app/assets/javascripts/active_admin.js</code></li>
+    <li>Copy the CSS patch to your ActiveAdmin's <code>app/assets/stylesheets/active_admin.scss</code></li>
+    <li>Restart your Rails server</li>
+    <li>Test the dropdown menus with keyboard navigation</li>
+  </ol>
+  
+  <h2>Key Features</h2>
+  
+  <ul>
+    <li><strong>Keyboard Navigation:</strong> Full arrow key navigation through menu items</li>
+    <li><strong>Tab Support:</strong> Menu items are properly tabbable when dropdown is open</li>
+    <li><strong>ARIA Attributes:</strong> Proper accessibility attributes for screen readers</li>
+    <li><strong>Focus Management:</strong> Automatic focus management when opening/closing dropdowns</li>
+    <li><strong>508 Compliance:</strong> Meets Section 508 accessibility requirements</li>
+  </ul>
+  
+  <h2>Testing Instructions</h2>
+  
+  <p>Test both pages using only the keyboard:</p>
+  
+  <ol>
+    <li>Use Tab to navigate to dropdown triggers</li>
+    <li>Press Enter or Space to open dropdowns</li>
+    <li>Use Arrow Up/Down to navigate menu items</li>
+    <li>Use Home/End to jump to first/last items</li>
+    <li>Press Escape to close dropdowns</li>
+    <li>Use Tab to close dropdown and move to next element</li>
+  </ol>
+  
+  <div style="margin-top: 2rem; padding: 1rem; background: #f8f9fa; border-radius: 4px;">
+    <h3>Additional Test Area</h3>
+    <p>This area is here to test tab navigation after the dropdown. Try tabbing through the page to ensure proper focus management.</p>
+    <button>Test Button 1</button>
+    <button>Test Button 2</button>
+    <a href="#">Test Link</a>
+  </div>
+</div>

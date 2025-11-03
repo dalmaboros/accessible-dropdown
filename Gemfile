@@ -40,7 +40,7 @@ group :development do
 end
 
 
-gem "activeadmin", "~> 3.3"
+gem "activeadmin", "~> 3.4"
 
 gem "devise", "~> 4.9"
 
